@@ -8,7 +8,7 @@ from linebot.exceptions import (
 )
 from linebot.models import *
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 # Channel Access Token
 line_bot_api = LineBotApi('Fg9jPHw4MFplDYS+trdjxGSy5ocKjphlFYubeu3l2g89GX4+Ffn0tAESnevUbL+QsuIt0irP/yxLcCgbvtEOkzWXuE6IxrglZCLoA0v+YriUdrOKAmBTYCnKx4iIZYyhrAAD39jp7eqLsnVKumj7vQdB04t89/1O/w1cDnyilFU=')
@@ -16,7 +16,7 @@ line_bot_api = LineBotApi('Fg9jPHw4MFplDYS+trdjxGSy5ocKjphlFYubeu3l2g89GX4+Ffn0t
 handler = WebhookHandler('931dcb19cd7ec1ffe867222b36840598')
 
 # 監聽所有來自 /callback 的 Post Request
-@app.route("/", methods=['POST'])
+@app.route("/", methods=['GET'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
