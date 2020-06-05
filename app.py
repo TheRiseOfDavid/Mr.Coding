@@ -33,18 +33,13 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="https://docs.google.com/forms/d/1BPtFuQSFuUEIfqDut-iJJBk2k8whN4JmRidmz_Oabjo/edit?usp=drivesdk"))
-    
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text="dadsad"))
-    
+    msg = "https://docs.google.com/forms/d/1BPtFuQSFuUEIfqDut-iJJBk2k8whN4JmRidmz_Oabjo/edit?usp=drivesdk"
     user_id = event.source.user_id
+    msg += "\n" + user_id 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=user_id))
+        TextSendMessage(text=msg))
+
 
 #import os
 if __name__ == "__main__":
