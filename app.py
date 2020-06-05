@@ -36,7 +36,8 @@ def handle_message(event):
     message = TextSendMessage(text=event.message.text)
     line_bot_api.reply_message(event.reply_token, message)
 
-import os
+#import os
 if __name__ == "__main__":
-    port = int(os.environ.get('PORT', 1225))
-    app.run(host='0.0.0.0', port=port)
+    #port = int(os.environ.get('PORT', 1225))
+    #app.run(host='0.0.0.0', port=port)
+    app.run()
