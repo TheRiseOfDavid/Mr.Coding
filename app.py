@@ -7,6 +7,8 @@ from linebot.exceptions import (
     InvalidSignatureError
 )
 from linebot.models import *
+import requests
+
 
 app = Flask(__name__, static_url_path='')
 
@@ -33,12 +35,18 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    msg = "https://docs.google.com/forms/d/1BPtFuQSFuUEIfqDut-iJJBk2k8whN4JmRidmz_Oabjo/edit?usp=drivesdk"
-    user_id = event.source.user_id
-    msg += "\n" + user_id 
+    msg = "" 
+    if event.message.text == "ccc":
+        msg = requests.patch("https://mrcoding.org/api/chatrooms/identify/ccc/owner" , data = {"key" : "value"})
+    else:        
+        msg = "https://docs.google.com/forms/d/1BPtFuQSFuUEIfqDut-iJJBk2k8whN4JmRidmz_Oabjo/edit?usp=drivesdk"
+        user_id = event.source.user_id
+        msg += "\n" + user_id 
+        
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=msg))
+    
 
 
 #import os
